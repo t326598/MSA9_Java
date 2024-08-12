@@ -10,7 +10,7 @@ public class Pikachu {
 	// * 생성자의 이름은 클래스의 이름과 동일하다.
 	// [생성자 정의] - 접근지정자 생성자명 ( 매개변수 ) {}
 	// [메소드 정의] - 접근지정자 반환타임 메소드명 ( 매개변수 ) {}
-
+	
 	// 변수
 	public int energy;
 	public String type ;
@@ -48,4 +48,13 @@ public class Pikachu {
 	public String bAttack() {
 		return "전광석화";
 	}
+	/*toString()
+	 * : 반환하는 문자열을 객체의 출력으로 대체해주는 메소드
+	 * 
+	 */
+	@Override
+	public String toString() {
+		return "Pikachu [energy=" + energy + ", type=" + type + "]";
+	}
+	
 }
