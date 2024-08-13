@@ -17,5 +17,4 @@ public class ex화폐 {
 			i++;
 		}
 	}
-
 }
