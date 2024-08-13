@@ -1,72 +1,70 @@
-package Day06.Ex04_Encapsulation;
+package Javac;
 
-/*
- * 통장계좌
- * - 예금액
- * - 예금주
- * - 계좌번호
- * - 은행명
- */
-
-public class Account {
+public class account {
 
 	private int deposit;
 	private String depositor;
 	private String depoNumber;
 	private String bank;
-	
+	public int se = 1000;
 	//기본 생성자
-	public Account() {
-		this(0,"예금주 없음","0000-0000","은행없음");
+	public account() {
 	}
-	// 매개변수가 있는 생성자
-	public Account(int deposit, String depositor, String depoNumber, String bank) {
+	
+	public account(int deposit, String depositor, String depoNumber, String bank, int se) {
 		this.deposit = deposit;
 		this.depositor = depositor;
 		this.depoNumber = depoNumber;
 		this.bank = bank;
 	}
-	//getter, setter
+
 	public int getDeposit() {
 		return deposit;
 	}
+
 	public void setDeposit(int deposit) {
-		if(deposit < 0) {
-		System.err.println(" 값은 음수가 될 수 없습니다.");
-		return;
-		}
-		
 		this.deposit = deposit;
-	
-}
-	
+	}
+
 	public String getDepositor() {
 		return depositor;
 	}
+
 	public void setDepositor(String depositor) {
 		this.depositor = depositor;
 	}
+
 	public String getDepoNumber() {
 		return depoNumber;
 	}
+
 	public void setDepoNumber(String depoNumber) {
 		this.depoNumber = depoNumber;
 	}
+
 	public String getBank() {
 		return bank;
 	}
+
 	public void setBank(String bank) {
 		this.bank = bank;
 	}
-	//toString
+
+	public int getSe() {
+		return se;
+	}
+
+	public void setSe(int se) {
+		this.se = se;
+	}
+
 	@Override
 	public String toString() {
-		return "Account [deposit=" + deposit + ", depositor=" + depositor + ", depoNumber=" + depoNumber + ", bank="
-				+ bank + "]";
+		return "accout [deposit=" + deposit + ", depositor=" + depositor + ", depoNumber=" + depoNumber + ", bank="
+				+ bank + ", se=" + se + "]";
 	}
 	
-	
-	
+
 	
 	
 }

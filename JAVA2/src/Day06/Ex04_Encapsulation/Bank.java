@@ -1,12 +1,12 @@
 package Day06.Ex04_Encapsulation;
 
+
 public class Bank {
 	public static void main(String[] args) {
 		Account account = new Account(0, "김조은", " 282401-05-109955", "국민은행");
-		
 		//deposit 변수는 private으로 지정했기 때문에, 접근불가
 		// accout.deposit = 10000;
-		account.setDeposit(10000);
+		account.setDeposit(5000);
 		// 값을 직접 접근하게 되면, 유효하지 않은 값을 임의로 지정할 수도 있지만,
 		// 캡슐화하여, 값을 setter 메소드를 통해서 접근하게 하면,
 		// 			값에 대한 유효성 검사와 제약조건을 지정할 수 있다.
@@ -15,14 +15,11 @@ public class Bank {
 		System.out.println("예급액 : " + money);
 		System.out.println(account);
 		
-		System.out.println(account.se);
-		account.se++;
+		System.out.println(account);
 		
 		
 		Account account1 = new Account();
-		System.out.println(account.se);
-		System.out.println(account1.se);
-		System.out.println(account1.se);
-		System.out.println(account.se);
+		System.out.println(account1);
+	
 	}
 }
