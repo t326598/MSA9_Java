@@ -16,5 +16,8 @@ public class ex화폐 {
 			input = input % money[i];
 			i++;
 		}
+		int a = sc.nextInt();
+		System.out.println(a);
+				
 	}
 }

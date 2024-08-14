@@ -1,10 +1,17 @@
 package TEST;
 
-public class test123 {
+import java.util.Scanner;
 
-	int speed;
+public class test123 {public static void main(String[] args) {
+
+	Scanner sc = new Scanner(System.in);
+	String a = sc.next();
+	String arr[] = new String ;
 	
-	public test123(int speed) {
-		this.speed = speed;
-	}
+	System.out.println();
+}
+
+	
+
+	
 }
