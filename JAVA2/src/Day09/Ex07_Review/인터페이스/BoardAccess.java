@@ -58,7 +58,7 @@ public class BoardAccess implements BoardInterface {
 	 */
 	@Override
 	public Board read(int no) {
-		if(no <= 0 || count >= 5) {
+		if(no <= 0 || no > 5) {
 			return null;
 		}
 		else {
@@ -75,7 +75,7 @@ public class BoardAccess implements BoardInterface {
 	 */
 	@Override
 	public int update(Board board) {
-		if(board.getNo() <= 0 || count >= 5) {
+		if(board.getNo() <= 0 || board.getNo() > 5) {
 		return 0;}
 		else {
 	
@@ -98,6 +98,24 @@ public class BoardAccess implements BoardInterface {
 	 */
 	@Override
 	public int delete(int no) {
-		return 0;
+		if(no <= 0 || no > 5) {
+			return 0;
+		} else {
+			boardList[no -1] = null;
+			for (int i = 0; i < boardList.length; i++) {
+				for (int j = 0; j < boardList.length; j++) {
+					if(boardList[j] == null) {
+						Board temp = boardList[j];
+						boardList[j] = boardList[j+1];
+						boardList[j+1] = temp;
+					}
+				}
+			}
+			
+			return count--;
+		}
+		
+			
+		
 	}
 }
