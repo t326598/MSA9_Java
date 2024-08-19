@@ -1,7 +1,7 @@
 package TEST;
 
-
 public class TEST {
+
 	int a = 10;
 	int b = 20;
 	
