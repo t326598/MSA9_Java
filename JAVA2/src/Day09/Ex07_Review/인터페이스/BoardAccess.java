@@ -1,16 +1,21 @@
 package Day09.Ex07_Review.인터페이스;
 
-public class BoardAccess implements BoardInterface {
 
-	int count = 5;
-	Board[] boardList = {
-			new Board("제목01", "작성자01", "내용01"),
-			new Board("제목02", "작성자02", "내용02"),
-			new Board("제목03", "작성자03", "내용03"),
-			new Board("제목04", "작성자04", "내용04"),
-			new Board("제목05", "작성자05", "내용05"),
-	};
+public class BoardAccess implements BoardInterface {
+	// 게시글 개수
+	int count = 0;
+	int i = 10;
+	// 게시글 목록
+	Board[] boardList = new Board[i]; 
+//		{
+//			new Board(1,"제목01", "작성자01", "내용01","2024/08/20 - 10:00","2024/08/20 - 10:00"),
+//			new Board(2,"제목02", "작성자02", "내용02","2024/08/20 - 10:00","2024/08/20 - 10:00"),
+//			new Board(3,"제목03", "작성자03", "내용03","2024/08/20 - 10:00","2024/08/20 - 10:00"),
+//			new Board(4,"제목04", "작성자04", "내용04","2024/08/20 - 10:00","2024/08/20 - 10:00"),
+//			new Board(5,"제목05", "작성자05", "내용05","2024/08/20 - 10:00","2024/08/20 - 10:00"),
+//	};
 	
+//	Board[][] bo = new [Board][9999];
 	/**
 	 * 게시글 등록
 	 * 1. 매개변수로 넘겨받은 board 객체에 게시글 번호를 부여한다.
@@ -21,11 +26,15 @@ public class BoardAccess implements BoardInterface {
 	
 	@Override
 	public Board create(Board board) {
+		if(this.count == 5) {
+			System.out.println("게시글 목록이 꽉 찼습니다.");
+			return null;
+		}
 		
 		int boardNo = count++;
 		board.setNo(boardNo);
-		String redDate = "2024/08/19 - 18:00";
-		String upDate = "2024/08/19 - 18:00";
+		String redDate = "2024/08/20 - 10:00";
+		String upDate = "2024/08/20 - 10:00";
 		board.setRegDate(redDate);
 		board.setUpDate(upDate);
 		
@@ -45,11 +54,14 @@ public class BoardAccess implements BoardInterface {
 	@Override
 	public Board[] list() {
 		if(count == 0) {
+			System.out.println("조회된 게시글이 없습니다.");
 			return null;
 		}
-		else {
-			return boardList;
+		System.out.println("게시글 목록을 조회합니다.");
+		if(boardList == null) {
+		StringBuffer sb = new StringBuffer("null");
 		}
+			return boardList;
 	}
 	/**
 	 * 게시글 조회
@@ -58,12 +70,17 @@ public class BoardAccess implements BoardInterface {
 	 */
 	@Override
 	public Board read(int no) {
-		if(no <= 0 || no > 5) {
+		// 유효하지 않은 경우
+		if(no < 1 || no > 5) {
+			System.out.println("1~5번의 게시글만 존재합니다.");
 			return null;
 		}
-		else {
+		// 유효하지않은 조건2
+		// 유효하지않은 조건3
+		
+		// 글번호 1~5 번에 해당되는지
+			System.out.println(no + "번 게시글을 조회합니다.");
 			return boardList[no-1];
-		}
 	}
 	/**
 	 * 게시글 수정
@@ -75,14 +92,27 @@ public class BoardAccess implements BoardInterface {
 	 */
 	@Override
 	public int update(Board board) {
-		if(board.getNo() <= 0 || board.getNo() > 5) {
-		return 0;}
-		else {
-	
-			boardList[board.getNo() -1 ] = board;
-			String upDate = "2024/08/19 - 18:15";
-			board.setUpDate(upDate);
+		int no = board.getNo(); // 수정할 게시글 번호
+		if(no < 1 || no > 5) {
+			System.out.println("1~5번 게시글만 존재합니다.");
+		return 0;}	// 수정된 게시글 0게, 수정x
+		if(count == 0) {
+			System.out.println("수정할 게시글이 존재하지 않습니다.");
+			return 0;
 		}
+		// 기존 게시글 정보 조회
+		Board oldBoard = boardList[no-1];
+					String updateTitle = board.getTitle();
+					String updateWriter = board.getWriter();
+					String updateContent = board.getContent();
+					
+					oldBoard.setTitle(updateTitle);
+					oldBoard.setWriter(updateWriter);
+					oldBoard.setContent(updateContent);
+					
+			boardList[no -1 ] = oldBoard;
+			oldBoard.setUpDate("2024/08/20 - 12:00");
+			// 참조형으로 이미 대입된 board를 따라가 수정일자가 적용되는방식으로 순서를 바꿔도 이상없이 작동한다.
 		return 1;
 		
 	}
@@ -98,24 +128,33 @@ public class BoardAccess implements BoardInterface {
 	 */
 	@Override
 	public int delete(int no) {
-		if(no <= 0 || no > 5) {
+		if(no < 1 || no > 5) {
+			System.out.println("1~5번 게시글만 존재합니다.");
 			return 0;
-		} else {
+		} 
+		if( count == 0) {
+			System.out.println("삭제할 게시글이 없습니다.");
+			return 0;
+		}
 			boardList[no -1] = null;
-			for (int i = 0; i < boardList.length; i++) {
-				for (int j = 0; j < boardList.length; j++) {
-					if(boardList[j] == null) {
-						Board temp = boardList[j];
-						boardList[j] = boardList[j+1];
-						boardList[j+1] = temp;
-					}
+			
+			for (int i = no; i < boardList.length; i++) {
+				// 바로 앞의 위치 - 현재 접근한 위치
+				boardList[i-1] = boardList[i];
 				}
+			//가장 마지막 위치의 객체는 null로 비운다
+			boardList[count -1] = null;
+				
+			count--;
+			
+			//글번호 재세팅 : 글번호를 1 ~ ...
+			for (int i = 0; i < boardList.length; i++) {
+				if(boardList[i] != null) {
+					boardList[i].setNo(i+1);
+				}
+				
 			}
 			
-			return count--;
-		}
-		
-			
-		
-	}
+			return 1;
+			}
 }
