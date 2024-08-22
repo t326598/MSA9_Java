@@ -4,16 +4,15 @@ package Day09.Ex07_Review.인터페이스;
 public class BoardAccess implements BoardInterface {
 	// 게시글 개수
 	int count = 0;
-	int i = 10;
 	// 게시글 목록
-	Board[] boardList = new Board[i]; 
-//		{
-//			new Board(1,"제목01", "작성자01", "내용01","2024/08/20 - 10:00","2024/08/20 - 10:00"),
-//			new Board(2,"제목02", "작성자02", "내용02","2024/08/20 - 10:00","2024/08/20 - 10:00"),
-//			new Board(3,"제목03", "작성자03", "내용03","2024/08/20 - 10:00","2024/08/20 - 10:00"),
-//			new Board(4,"제목04", "작성자04", "내용04","2024/08/20 - 10:00","2024/08/20 - 10:00"),
-//			new Board(5,"제목05", "작성자05", "내용05","2024/08/20 - 10:00","2024/08/20 - 10:00"),
-//	};
+	Board[] boardList =
+		{
+			new Board(1,"제목01", "작성자01", "내용01","2024/08/20 - 10:00","2024/08/20 - 10:00"),
+			new Board(2,"제목02", "작성자02", "내용02","2024/08/20 - 10:00","2024/08/20 - 10:00"),
+			new Board(3,"제목03", "작성자03", "내용03","2024/08/20 - 10:00","2024/08/20 - 10:00"),
+			new Board(4,"제목04", "작성자04", "내용04","2024/08/20 - 10:00","2024/08/20 - 10:00"),
+			new Board(5,"제목05", "작성자05", "내용05","2024/08/20 - 10:00","2024/08/20 - 10:00"),
+	};
 	
 //	Board[][] bo = new [Board][9999];
 	/**
@@ -31,7 +30,7 @@ public class BoardAccess implements BoardInterface {
 			return null;
 		}
 		
-		int boardNo = count++;
+		int boardNo = ++count;
 		board.setNo(boardNo);
 		String redDate = "2024/08/20 - 10:00";
 		String upDate = "2024/08/20 - 10:00";
@@ -41,7 +40,6 @@ public class BoardAccess implements BoardInterface {
 		boardList[count-1] = board;
 		System.out.println(board);
 		System.out.println("게시글이 등록되었습니다.");
-		
 		return board;
 		
 	}
@@ -58,9 +56,6 @@ public class BoardAccess implements BoardInterface {
 			return null;
 		}
 		System.out.println("게시글 목록을 조회합니다.");
-		if(boardList == null) {
-		StringBuffer sb = new StringBuffer("null");
-		}
 			return boardList;
 	}
 	/**

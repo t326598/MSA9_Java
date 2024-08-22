@@ -23,11 +23,13 @@ public class Main {
 			
 			switch (menuNo) {
 			case 1: // 게시글 목록 
+				int i = 0;
 					Board[] boardList = boardInterface.list();
 					if(boardList !=null)
 					for (Board board : boardList) {
 						System.out.println(board);
 						System.out.println();
+						i++;
 					}
 					break;
 			case 2: // 게시글 등록
@@ -37,7 +39,6 @@ public class Main {
 					String writer = sc.nextLine();
 					System.out.println("내용 : ");
 					String content = sc.nextLine();
-							
 							Board board = new Board(title, writer, content);
 							Board createdBoard = boardInterface.create(board);
 							if (createdBoard != null) {
