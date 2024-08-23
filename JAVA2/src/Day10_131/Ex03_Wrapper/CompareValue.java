@@ -1,4 +1,4 @@
-package Day10_12.Ex03_Wrapper;
+package Day10_131.Ex03_Wrapper;
 
 import Day04.Class.Pikachu;
 

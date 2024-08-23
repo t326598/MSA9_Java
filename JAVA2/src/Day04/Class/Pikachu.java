@@ -26,7 +26,6 @@ public class Pikachu {
 		//energy = 100;
 		//type = "전기";
 		this(100, " 전기");
-		System.out.println("기본생성");
 	}
 	public Pikachu(int energy) {
 		this (energy, "전기");

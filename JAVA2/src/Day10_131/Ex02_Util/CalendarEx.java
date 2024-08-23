@@ -1,4 +1,4 @@
-package Day10_12.Ex02_Util;
+package Day10_131.Ex02_Util;
 
 import java.util.Calendar;
 
@@ -8,7 +8,7 @@ public class CalendarEx {
 		Calendar now = Calendar.getInstance();  // 기본 현재 날짜/시간으로 객체를 가져온다.
 		printCalendar("현재", now);
 		
-		// 자바 프로그래밍 마지막 수업일
+		// 자바 프로그래밍 마지막 수업일s
 		Calendar test = Calendar.getInstance();
 		test.set(2024, Calendar.SEPTEMBER, 4); // 2024년 9월 4일 날짜 지정
 		printCalendar("자바 마지막 수업일(연/월/일", test);
