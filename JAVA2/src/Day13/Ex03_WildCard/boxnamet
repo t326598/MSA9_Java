@@ -1,0 +1,9 @@
+Box -> BoxWildCard 순서로 작성
+
+Person.java
+Worker
+Student
+HighStudent
+MiddleStudent
+Course  <- Manager(interface)
+Academy
