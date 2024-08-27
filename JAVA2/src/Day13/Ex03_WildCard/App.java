@@ -114,63 +114,56 @@ public class App {
 
 		Course<?> selectedCourse = new Course();
 		// 해당 수강생을 등록할 과정을 지정
+		Person newStudent = null;
 		for (int i = 0; i < courseList.size(); i++) {
 			Course<?> course = courseList.get(i);
 			// 입력한 과정명과 등록된 과정명이 일치하면
 
 			if (course.getName().equals(courseName)) {
 				selectedCourse = course; // 지정된 과정
+				// 등록할 과정은 직장인이라, Course<Worker>로 되어 있고
+				// (List<Worker>) student로 지정
+				// 따라서 이 수강생 목록에 추가할 Worker 객체를 생성한다.
+				switch (type) {
+				case "일반인" : 
+								newStudent = new Person(name);
+								break;
+				case "직장인" : 
+					newStudent = new Worker(name);
+					break;
+				case "학생" : 
+					newStudent = new Student(name);
+					break;
+				}
+				
 				break;
 			}
 		}
 		// 선택된 과정에서 수강생 목록을 가져온다.
 
-		// (List<Person>) selectedCourse.getStudents();
+		// 등록할 과정은 직장인이라, Course<Worker>로 되어 있고
+		// (List<Worker>) student로 지정
 		// 수강생 목록에 지금 입력한 수강생을 추가한다.
 		// * 수강생 종류에 맞게 객체를 생성하여 추가한다.
-		Person student = switch (courseType) {
-		case "일반인" -> {
-			Course<Person> course = (Course<Person>) selectedCourse;
-			List<Person> students = course.getStudents();
-			Person newStudents = new Person(name);
-			students.add(new Person(name));
-			yield new Person(name);
-		}
-		case "직장인" -> {
-			if(type.equals("학생") || type.equals("고등학생") || type.equals("중학생")) {
-				System.out.println("학생은 직장인 과정을 들을 수 없습니다.");
-				yield null;
-			}
-			else {
-			Course<Worker> course = (Course<Worker>) selectedCourse;
-			List<Worker> students = course.getStudents();
-			Person newStudents = new Worker(name);
-			students.add(new Worker(name));
-			yield new Worker(name);
-			}}
 		
-		case "학생" -> 
-		{Course<Student> course = (Course<Student>) selectedCourse;
-		List<Student> students = course.getStudents();
-		Person newStudents = new Student(name);
-		students.add(new Student(name));
-		yield new Student(name);
-}
-		case "고등학생" ->{Course<Student> course = (Course<Student>) selectedCourse;
-		List<Student> students = course.getStudents();
-		Person newStudents = new Student(name);
-		students.add(new Student(name));
-		yield new Student(name);
-}
-		case "중학생" -> {Course<Student> course = (Course<Student>) selectedCourse;
-		List<Student> students = course.getStudents();
-		Person newStudents = new Student(name);
-		students.add(new Student(name));
-		yield new Student(name);
-}
-		default -> throw new IllegalArgumentException("유효하지 않은 수강생 종류입니다 : " + type);
-		};
-		studentList.add(student);
+		//*과정 종류에 맞지 않는 수강생 종류를 등록할 경우 클래스 변환 예와가 발생
+		try {
+			switch (courseType) {
+		case "일반인" : 
+			((Course<Person>) selectedCourse).addStudent(newStudent);
+			break;
+		case "직장인":
+			((Course<Worker>) selectedCourse).addStudent((Worker)newStudent);
+			
+			break;
+		case "학생":
+		((Course<Student>) selectedCourse).addStudent((Student)newStudent);
+		break;
+			}
+			studentList.add(newStudent);
+		} catch(Exception e) {
+			System.out.println(courseType + " 과정에 " + type + "을 등록할 수 없습니다.");
+		}
 	}
 
 	/**
