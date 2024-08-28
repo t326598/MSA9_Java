@@ -1,4 +1,4 @@
-package Day08.DesignPattern_builder;
+package Day08.DesignPattern.builder;
 
 public class Builder {
 	

@@ -1,4 +1,4 @@
-package Day08.DesignPattern_Sigleton;
+package Day08.DesignPattern.Sigleton;
 
 /*
  * 디자인 패턴?

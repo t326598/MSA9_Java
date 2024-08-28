@@ -1,4 +1,4 @@
-package Day08.DesignPattern_Sigleton;
+package Day08.DesignPattern.Sigleton;
 
 public class SingleTonTest {
 	public static void main(String[] args) {

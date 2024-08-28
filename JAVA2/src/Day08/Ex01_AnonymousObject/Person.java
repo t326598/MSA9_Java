@@ -1,4 +1,4 @@
-package Day08.Ex_AnonymousObject;
+package Day08.Ex01_AnonymousObject;
 
 public class Person {
 
